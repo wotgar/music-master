@@ -9,25 +9,35 @@ class Profile extends Component {
       artist = this.props.artist;
     }
     return (
-      <div>
+      <div className="profile">
+        {/* images ist in der json ein array aus URLs. Diese verwerten wir jetzt: */}
+        <img
+          alt="Profile"
+          className="profile-img"
+          src={artist.images[0].url}/>
         <div className="profile-info">
           {/* name und followers.total sind parameter im artists-array der json
               Wir haben sie an unsere let-Variable 'artist' weitergegeben und
               lesen sie nun von dort aus: */}
-          <div className="profile-name">{artist.name}</div>
-          <div className="profile-followers">{artist.followers.total} followers</div>
-          <div className="profile-genres">
+          <div className="profile-name">
+            {artist.name}
+          </div>
+          <div className="profile-followers">
+            {artist.followers.total} followers
+          </div>
+          <div className="profile-genres" render="false">
             {
               /* JS hat eine map-Funktion, mit der man Arrays durchiterieren kann
-               * Wie bei einer foreach steht hier die Variable 'duttn' für die einzelnen
+               * Wie bei einer foreach steht hier die Variable 'stilrichtung' für die einzelnen
                * Einträge des Arrays, während das k den Key oder Index darstellt.
-               * Statt duttn und k können dort beliebige Variablennamen stehen.
+               * Statt stilrichtung und k können dort beliebige Variablennamen stehen.
                */
-                artist.genres.map((duttn, k) => {
-                  duttn = duttn;
+                artist.genres.map((stilrichtung, k) => {
+                  stilrichtung = stilrichtung;
+                  {/* Ich blende hier mal den return aus, damit diese Liste nicht gerendered wird.
                   return(
-                    <span key={k}>{duttn}</span>
-                  )
+                    <span key={k}>{stilrichtung}</span>
+                  ) */}
                 }
               )
             }
@@ -49,11 +59,6 @@ class Profile extends Component {
             }
           </div>
         </div>
-        {/* images ist in der json ein array aus URLs. Diese verwerten wir jetzt: */}
-        <img
-          alt="Profile"
-          className="profile-img"
-          src={artist.images[0].url}/>
       </div>
     )
   }
